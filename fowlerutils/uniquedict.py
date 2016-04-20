@@ -2,19 +2,23 @@
 Provides a function to get unique list of values from two dictionaries.
 
 Author:  Kubis Fowler
-Version: 0.1
+Version: 0.2
 """
 
 def uniquedict(dict1, dict2):
-	"""
-	Takes dict1 and dict2 and returns a new asc sorted distinct list from their values.
-	"""
+	"Takes dict1 and dict2 and returns a new distinct asc-sorted list of their values."
 
-	which = len(dict1) > len(dict2)
-	primary = which and dict2 or dict1
-	secondary = which and dict1 or dict2
+	def conv(arb):
+		if type(arb) is dict:
+			return arb.values()
+		elif type(arb) is set:
+			return list(arb)
+		else:
+			raise TypeError('arguments must be dict or set')
 
-	distinct = [val for val in primary if val not in secondary] + [val for val in secondary]
+	dict1, dict2 = conv(dict1), conv(dict2)
+
+	distinct = list(set(dict1 + dict2))
 	distinct.sort()
 
 	return distinct
