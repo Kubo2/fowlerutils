@@ -1,5 +1,5 @@
 """
-Provides a function to get unique list of values from two dictionaries.
+Handy and unique utility functions for instant use.
 
 Author:  Kubis Fowler
 Version: 0.2
